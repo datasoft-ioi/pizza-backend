@@ -1,0 +1,58 @@
+[
+    {
+        "model": "products.category",
+        "pk": 1,
+        "fields": {
+            "name": "Pizza",
+            "slug": "pizza"
+        }
+    },
+    {
+        "model": "products.category",
+        "pk": 2,
+        "fields": {
+            "name": "Sushi",
+            "slug": "sushi"
+        }
+    },
+    {
+        "model": "products.category",
+        "pk": 3,
+        "fields": {
+            "name": "Napitki",
+            "slug": "napitki"
+        }
+    },
+    {
+        "model": "products.category",
+        "pk": 4,
+        "fields": {
+            "name": "Zakuski",
+            "slug": "zakuski"
+        }
+    },
+    {
+        "model": "products.category",
+        "pk": 5,
+        "fields": {
+            "name": "Kombo",
+            "slug": "kombo"
+        }
+    },
+    {
+        "model": "products.category",
+        "pk": 6,
+        "fields": {
+            "name": "Diserti",
+            "slug": "diserti"
+        }
+    },
+    {
+        "model": "products.category",
+        "pk": 7,
+        "fields": {
+            "name": "Sousi",
+            "slug": "sousi"
+        }
+    }
+]

@@ -1,0 +1,6 @@
+django
+django-cors-headers
+djangorestframework
+pillow
+whitenoise
+django-mptt
