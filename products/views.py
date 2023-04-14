@@ -53,3 +53,28 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
 class BannerViewSet(viewsets.ModelViewSet):
     queryset = Banner.objects.all().order_by('-id')[:4]
     serializer_class = BannerSerializer
+
+
+class CategoryListCreateView(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+class SubcategoryListCreateView(generics.ListCreateAPIView):
+    queryset = Subcategory.objects.all()
+    serializer_class = SubcategorySerializer
+
+
+class CategoryProductListView(generics.ListAPIView):
+    serializer_class = ProductSerializer
+
+    def get_queryset(self):
+        category_id = self.kwargs['category_id']
+        return Product.objects.filter(category=category_id)
+
+class SubcategoryProductListView(generics.ListAPIView):
+    serializer_class = ProductSerializer
+
+    def get_queryset(self):
+        subcategory_id = self.kwargs['subcategory_id']
+        return Product.objects.filter(subcategory=subcategory_id)
