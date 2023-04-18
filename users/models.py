@@ -7,5 +7,7 @@ class User(AbstractUser):
     image = models.ImageField(upload_to='users_images', null=True, blank=True)
     phone = models.CharField(max_length=23, blank=True, null=True)
 
+    username = models.CharField(max_length=150, unique=True)
+
     # adress dastavki
     
