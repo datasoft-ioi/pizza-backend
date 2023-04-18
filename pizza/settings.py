@@ -207,3 +207,4 @@ CORS_ALLOW_CREDENTIALS = True
 #     'https://pizza.data-soft.uz',
 # ]
 CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', 'https://pizza.data-soft.uz']
+
