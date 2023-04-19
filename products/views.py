@@ -1,11 +1,17 @@
 from rest_framework import generics
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 
-from .models import Category, Subcategory, Product, Banner
+from .models import Category, Subcategory, Product, Banner, Basket
+from .permissions import IsOwnerOrAdmin
 
-from .serializers import CategorySerializer, SubcategorySerializer, ProductSerializer, BannerSerializer
+from .serializers import (
+    CategorySerializer, SubcategorySerializer, ProductSerializer, BannerSerializer,
+    BasketSerializer
+)
 
 
+# Categories 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
@@ -33,6 +39,7 @@ class SubcategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = SubcategorySerializer
 
 
+#products 
 class ProductList(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
@@ -80,4 +87,18 @@ class SubcategoryProductListView(generics.ListAPIView):
         subcategory_id = self.kwargs['subcategory_id']
         return Product.objects.filter(subcategory=subcategory_id)
     
+
+class BasketListCreateAPIView(generics.ListCreateAPIView):
+    serializer_class = BasketSerializer
+    permission_classes = [IsAuthenticated]
+    def get_queryset(self):
+        return Basket.objects.filter(user=self.request.user)
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+
+class BasketDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Basket.objects.all()
+    serializer_class = BasketSerializer
+    permission_classes = [IsOwnerOrAdmin]
 

@@ -1,7 +1,11 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from mptt.models import MPTTModel
 from mptt.fields import TreeForeignKey
+
+from users.models import User
+
 
 
 class Category(models.Model):
@@ -41,6 +45,23 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class Basket(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _('basket')
+        verbose_name_plural = _('baskets')
+        unique_together = ('user', 'product')
+
+    def __str__(self):
+        return f'{self.user.username} - {self.product.name} ({self.quantity})'
 
 
 class Banner(models.Model):
@@ -49,3 +70,5 @@ class Banner(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+

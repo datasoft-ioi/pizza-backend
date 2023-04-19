@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Category, Subcategory, Product, Banner
+from .models import Category, Subcategory, Product, Banner, Basket
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -37,3 +37,9 @@ class BannerSerializer(serializers.ModelSerializer):
         model = Banner
         fields = ['id','title', 'image']
 
+
+class BasketSerializer(serializers.ModelSerializer):
+    product = ProductSerializer()
+    class Meta:
+        model = Basket
+        fields = ('id', 'user', 'product', 'quantity', 'created_at', 'updated_at')
