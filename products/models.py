@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.core.validators import MinValueValidator, MaxValueValidator
+
 
 from mptt.models import MPTTModel
 from mptt.fields import TreeForeignKey
@@ -40,7 +42,7 @@ class Product(models.Model):
     slug = models.SlugField(unique=True)
     info = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    count = models.IntegerField(default=1)
+    count = models.IntegerField(default=1, validators=[MinValueValidator(0),MaxValueValidator(10)])
     img = models.ImageField(upload_to='products/')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
