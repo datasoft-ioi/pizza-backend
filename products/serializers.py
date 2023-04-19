@@ -5,7 +5,7 @@ from .models import Category, Subcategory, Product, Banner, Basket
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ('id', 'img', 'name', 'info', 'price', 'xit', 'gramm')
+        fields = ('id', 'img', 'name', 'info', 'price', 'xit', 'gramm', 'count')
         depth = 1
 
 

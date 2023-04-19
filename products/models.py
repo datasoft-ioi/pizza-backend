@@ -40,6 +40,7 @@ class Product(models.Model):
     slug = models.SlugField(unique=True)
     info = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    count = models.IntegerField(default=1)
     img = models.ImageField(upload_to='products/')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
